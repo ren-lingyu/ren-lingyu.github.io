@@ -1,5 +1,5 @@
 body {
-    font-family: "Times New Roman", Times,'LXGW WenKai',STFangSong, Helvetica, Arial, Vernada, Tahoma, STXihei, "Microsoft YaHei", "Songti SC", SimSun, Heiti, sans-serif;
+    font-family: 'Maple Mono CN';
     margin: 0;
     padding: 0;
     height: 100%;
@@ -12,30 +12,30 @@ ul {
 .flexbox {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* 视口高度 */
+    min-height: 100vh; 
 }
 
 .topline {
     border: none;
     height: 1px;
     background-color: #bbbbbb;
-    width: 95%;        /* 屏幕宽度的90% */
-    margin: 0 auto;    /* 居中 */
+    width: 95%;     
+    margin: 0 auto; 
 }
 
 .bottomline {
     border: none;
     height: 1px;
     background-color: #bbbbbb;
-    width: 95%;        /* 屏幕宽度的90% */
-    margin: 0 auto;    /* 居中 */
+    width: 95%;      
+    margin: 0 auto; 
 }
 
 
 #content {
     flex: 1;
     padding: 10px;
-    /* font-size: clamp(20px, 2.5vh, 60px);   */
+    font-size: clamp(20px, 2.5vh, 2.5vh);  
     font-size: 20px;  
     width: 60%;  
     margin: 0 auto;
@@ -60,7 +60,7 @@ header nav {
 header nav a {
     color: #666;
     text-decoration: none;
-    font-size: 20px;  
+    font-size: clamp(18px, 2.25vh, 2.25vh); 
     margin: 0 20px;
 }
 
@@ -72,6 +72,7 @@ header nav a:hover {
 footer {
     text-align: center;
     margin: 0 auto;
-    font-size: 0.9em;
+    font-size: clamp(12px, 1.5vh, 1.5vh);
+    padding: 10px 0;
     color: #666;
 }
