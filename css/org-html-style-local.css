@@ -1,0 +1,77 @@
+body {
+    font-family: "Times New Roman", Times,'LXGW WenKai',STFangSong, Helvetica, Arial, Vernada, Tahoma, STXihei, "Microsoft YaHei", "Songti SC", SimSun, Heiti, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+ul {
+    list-style-type: square
+}
+
+.flexbox {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* 视口高度 */
+}
+
+.topline {
+    border: none;
+    height: 1px;
+    background-color: #bbbbbb;
+    width: 95%;        /* 屏幕宽度的90% */
+    margin: 0 auto;    /* 居中 */
+}
+
+.bottomline {
+    border: none;
+    height: 1px;
+    background-color: #bbbbbb;
+    width: 95%;        /* 屏幕宽度的90% */
+    margin: 0 auto;    /* 居中 */
+}
+
+
+#content {
+    flex: 1;
+    padding: 10px;
+    /* font-size: clamp(20px, 2.5vh, 60px);   */
+    font-size: 20px;  
+    width: 60%;  
+    margin: 0 auto;
+}
+
+
+header {
+    display: flex;
+    justify-content: center;        
+    align-items: center;            
+    margin: 0 auto;
+    padding: 15px 0;
+    background-color: white;
+}
+
+header nav {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
+
+header nav a {
+    color: #666;
+    text-decoration: none;
+    font-size: 20px;  
+    margin: 0 20px;
+}
+
+header nav a:hover {
+    background-color: #d3d3d3;
+    border-radius: 4px;
+}
+
+footer {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 0.9em;
+    color: #666;
+}
