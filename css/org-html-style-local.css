@@ -10,9 +10,9 @@ ul {
 }
 
 a {
-  color: black;
+  color: rgb(0, 29, 125);
   text-decoration: none;
-  border-bottom: 0.0625rem dotted;
+  /* border-bottom: 0.025rem dotted; */
 }
 
 a:hover {
@@ -291,4 +291,12 @@ ul .filetags {
 
 .title, .subtitle {
     text-align: center;
+}
+
+.abstract {
+  margin: 2em 2em;
+  padding-left: 1em;
+  border-left: 4px solid #ccc;
+  color:  gray;
+  font-size: 0.9em;
 }
