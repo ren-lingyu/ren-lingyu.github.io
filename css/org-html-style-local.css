@@ -353,6 +353,7 @@ footer {
 .filter {
   text-align: center;
   font-size: 0.8rem;
+  line-height: 1;
 
   label {
     position: relative;
@@ -427,4 +428,5 @@ ul .filetags {
   border-left: 4px solid var(--color-abstract-border-left);
   color:  var(--color-abstract);
   font-size: 1.0rem;
+  line-height: 1;
 }
