@@ -6,40 +6,42 @@
 /* @import url("https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkai/dist/LXGWWenKai-Regular/result.css"); */
 
 html {
-  overflow-y: scroll;
-  scrollbar-width: none;
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 
 html::-webkit-scrollbar {
-  width: 0rem;
-  background: transparent;
+    width: 0rem;
+    background: transparent;
 }
 
 :root {
-  --color: #cccccc;
-  --color-bg: #2c2c2c;
-  --color-bg-topline: #444;
-  --color-bg-bottomline: #444;
-  --color-link: #c7c7c7;
-  --color-bg-link: #2c2c2c;
-  --color-link-hover: #000000;
-  --color-bg-link-hover: #c7c7c7;
-  --color-toc: #b0b0b0;
-  --color-abstract: #b0b0b0;
-  --color-abstract-border-left: #666;
-  --color-footnote: #b0b0b0;
-  --color-footnote-border-left: #666;
-  --color-timestamp: #b0b0b0;
-  --color-tag-top-checkered: #e0e0e0;
-  --color-tag-top-checkered-border: #e0e0e0;
-  --color-tag-top: #555; 
-  --color-tag-top-border: #555;
-  --color-tag-after: #adadad; 
-  --color-leading-star: gray;
-  --color-post-status: gray;
-  --width-of-content-for-wide-screen: 60vw;
-  --width-of-one-side-for-wide-screen: 20vw;
-  --font-family-of-org-element: 'Maple Mono NF CN';
+    --color: #cccccc;
+    --color-bg: #2c2c2c;
+    --color-bg-topline: #444;
+    --color-bg-bottomline: #444;
+    --color-link: #c7c7c7;
+    --color-bg-link: #2c2c2c;
+    --color-link-hover: #000000;
+    --color-bg-link-hover: #c7c7c7;
+    --color-toc: #b0b0b0;
+    --color-abstract: #b0b0b0;
+    --color-abstract-border-left: #666;
+    --color-footnote: #b0b0b0;
+    --color-footnote-border-left: #666;
+    --color-timestamp: #b0b0b0;
+    --color-tag-top-checkered: #e0e0e0;
+    --color-tag-top-checkered-border: #e0e0e0;
+    --color-tag-top: #555; 
+    --color-tag-top-border: #555;
+    --color-tag-after: #adadad; 
+    --color-leading-star: gray;
+    --color-post-status: gray;
+    --width-of-content-for-wide-screen: 60vw;
+    --width-of-one-side-for-wide-screen: 20vw;
+    --width-of-body: 100vw;
+    --min-width-of-body: 50rem;
+    --font-family-of-org-element: 'Maple Mono NF CN';
 }
 
 body {
@@ -55,6 +57,9 @@ body {
     color: var(--color);
     background-color: var(--color-bg);
     text-decoration-skip-ink: none;
+    width: var(--width-of-body);
+    min-width: var(--min-width-of-body);
+    min-height: 100vh;
 }
 
 p, ul {
@@ -64,6 +69,8 @@ p, ul {
 
 ul {
     list-style-type: square;
+    list-style-position: inside;
+    padding-inline-start: 1rem;
 }
 
 a {
@@ -88,16 +95,21 @@ a:hover {
 .flexbox {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; 
+    min-height: 100vh;
 }
 
 #content {
     flex: 1;
-    padding: 1rem;
-    margin: 0 auto;
+    padding: 1rem auto;
+    margin: 0;
     font-size: 1.2rem;
     line-height: 1.8;
-    width: 100vw;     
+    width: var(--width-of-body);
+    min-width: var(--min-width-of-body);
+}
+
+#content .content {
+    position: relative;
 }
 
 #content .post-status {
@@ -121,41 +133,35 @@ a:hover {
     border: none;
     border-top: 5px double;
     background-color: var(--color-bg-topline);
-    width: 100vw;     
-    margin: 0 auto; 
+    margin: 0;
+    width: var(--width-of-body);
+    min-width: var(--min-width-of-body);
 }
 
 .bottomline {
     border: none;
     border-top: 5px double;
-    background-color: var(--color-bg-bottomline);
-    width: 100vw;      
-    margin: 0 auto; 
+    background-color: var(--color-bg-bottomline);   
+    margin: 0;
+    width: var(--width-of-body);
+    min-width: var(--min-width-of-body);
 }
 
 @media screen and (min-width: 75rem) {    
     #content {
 	width: var(--width-of-content-for-wide-screen);
+	margin: 0 auto;
     }
 
     .topline {
 	width: var(--width-of-content-for-wide-screen);
+	margin: 0 auto;
     }
   
     .bottomline {
 	width: var(--width-of-content-for-wide-screen);
+	margin: 0 auto;
     }
-}
-
-/* .content {
-   width: 50vw;
-   max-width: 48rem;
-   min-height: 84vh;
-   margin: 1rem auto;
-} */
-
-.content {
-    position: relative;
 }
 
 #content p sup a {
@@ -377,42 +383,45 @@ div > h6::before {
 }
 
 /* header and footer */
+
 header {
-  font-family: 'Maple Mono NF CN';
-  display: flex;
-  align-items: center;
-  margin-top: 0.5rem;
-  margin-bottom: 0rem;
-  margin-left: 0rem;
-  margin-right: 0rem;
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
-  padding-left: 0rem;
-  padding-right: 0rem;
-}
-
-header nav {
-  display: flex;
-  align-items: center;
-  width: 100vw;
-  gap: 1.5rem;
-}
-
-header nav a:nth-child(2) {
-  margin-left: auto;
-}
-
-header nav a {
-  font-size: 1.4rem;
-  margin: 0;
-  padding: 0;
+    font-family: 'Maple Mono NF CN';
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0rem;
+    margin-left: 0rem;
+    margin-right: 0rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    padding-left: auto;
+    padding-right: auto;
+    width: var(--width-of-body);
+    min-width: var(--min-width-of-body);
+    nav {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 1.5rem;
+	margin: 0;
+	padding: 0;	
+	width: var(--width-of-body);
+	min-width: var(--min-width-of-body);
+	a {
+	    font-size: 1.4rem;
+	    margin: 0;
+	    padding: 0;
+	}
+	a:nth-child(2) {
+	    margin-left: auto;
+	}
+    }
 }
 
 @media screen and (min-width: 75rem) {
   header {
       padding-left: var(--width-of-one-side-for-wide-screen);
       padding-right: var(--width-of-one-side-for-wide-screen);
-
       nav {
 	  width: var(--width-of-content-for-wide-screen);
       }
@@ -423,11 +432,13 @@ footer {
     font-family: 'Maple Mono NF CN';
     font-size: 0.8rem;
     text-align: center;
-    margin: 0 auto;
+    margin: 0;
     padding-top: 2.5rem;
     padding-bottom: 0.5rem;
-    padding-left: auto;
-    padding-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+    width: var(--width-of-body);
+    min-width: var(--min-width-of-body);
 }
 
 footer p .update-time{
@@ -482,7 +493,7 @@ footer p .update-time{
 }
 
 .filter ~ ul {
-    padding-inline-start: 0.5rem;
+    padding-inline-start: 0rem;
 }
 
 ul .filetags {
