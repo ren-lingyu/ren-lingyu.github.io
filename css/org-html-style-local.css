@@ -35,6 +35,7 @@
 }
 
 html {
+    font-size: clamp(15px, 0.85vw, 100px);
     overflow-y: scroll;
     scrollbar-width: none;
     width: var(--width-of-body);
@@ -424,6 +425,7 @@ header {
   header {
       padding-left: var(--width-of-one-side-for-wide-screen);
       padding-right: var(--width-of-one-side-for-wide-screen);
+	  width: var(--width-of-content-for-wide-screen);
       nav {
 	  width: var(--width-of-content-for-wide-screen);
 	  a {
