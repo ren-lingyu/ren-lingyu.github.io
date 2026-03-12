@@ -76,6 +76,10 @@ ul {
     padding-inline-start: 1rem;
 }
 
+[class^="outline-text-"] > ul.org-ul:first-child {
+    margin-top: 0rem;
+}
+
 a {
     display: inline-block;
     color: var(--color-link);
@@ -280,7 +284,7 @@ sup:has(a.footref) {
     
     #footnotes #text-footnotes {
 	left: 0vw;
-  }
+    }
     
     #table-of-contents #text-table-of-contents ul, #footnotes #text-footnotes .footdef {
 	background-color: var(--color-bg);
@@ -528,11 +532,7 @@ ul .filetags {
     line-height: 1.2;
 }
 
-.outline-text-2,
-.outline-text-3,
-.outline-text-4,
-.outline-text-5,
-.outline-text-6 {
+[class^="outline-text-"] {
     > p:has(span.timestamp-wrapper) + div.abstract {
 	padding-left: 0rem;
 	padding-right: 0rem;
