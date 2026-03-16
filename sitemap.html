@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-16 Mon 20:44 +0800 -->
+<!-- 2026-03-16 Mon 23:30 +0800 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Post</title>
@@ -22,6 +22,8 @@ li{display: list-item;}
 li:has([data-filetags~="#年度总结"]){display: list-item;}
 .content:has([value="#随笔"]:checked)
 li:has([data-filetags~="#随笔"]){display: list-item;}
+.content:has([value="#日常"]:checked)
+li:has([data-filetags~="#日常"]){display: list-item;}
 .content:has([value="#2026"]:checked)
 li:has([data-filetags~="#2026"]){display: list-item;}
 </style>
@@ -44,7 +46,7 @@ li:has([data-filetags~="#2026"]){display: list-item;}
 <div id="content" class="content">
 <h1 class="title">Post</h1>
 
-<div class="abstract" id="org23bd1da">
+<div class="abstract" id="org3f11262">
 <p>
 The map of blog posting, sorted by DATE and categorized by FILESTAGS. 
 </p>
@@ -67,13 +69,18 @@ The map of blog posting, sorted by DATE and categorized by FILESTAGS.
 </label>
 
 <label class="category">
+<input type="radio" name="tag" value="#日常"/>
+<span>#日常</span>
+</label>
+
+<label class="category">
 <input type="radio" name="tag" value="#2026"/>
 <span>#2026</span>
 </label>
 </section>
 
 <ul class="org-ul">
-<li><span class="timestamp">[2026-03-16 Mon +0800]</span> <a href="728abbae-bd72-4e77-a992-eb6d44e0f6b0/2026_winter_vacation.html">2026 寒假折腾日记</a> <span class="filetags" data-filetags="#2026"></span></li>
+<li><span class="timestamp">[2026-03-16 Mon +0800]</span> <a href="728abbae-bd72-4e77-a992-eb6d44e0f6b0/2026_winter_vacation.html">2026 寒假折腾日记</a> <span class="filetags" data-filetags="#2026 #日常"></span></li>
 <li><span class="timestamp">[2026-02-02 Mon +0800]</span> <a href="9ad88f6e-e5fe-4739-87cc-ed07da3a0922/novel.html">聊聊小说</a> <span class="filetags" data-filetags="#2026 #随笔"></span></li>
 <li><span class="timestamp">[2026-01-05 Mon +0800]</span> <a href="5ca25c84-6f5c-4d86-ad70-27952943ff50/2025_summary.html">2025 年度总结</a> <span class="filetags" data-filetags="#2026 #年度总结"></span></li>
 </ul>
@@ -84,7 +91,7 @@ The map of blog posting, sorted by DATE and categorized by FILESTAGS.
 <p>
 &copy;2026 <a rel="cc:attributionURL" href="https://aren-coco.com/">aRenCoco</a> · <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"></p>
 <p>
-Generated at <span class="update-time">2026-03-16 Mon 20:44 +0800</span> by <a href="https://www.gnu.org/software/emacs/">Emacs</a> 30.2 (<a href="https://orgmode.org">Org</a> mode 9.8-pre) on <a href="https://github.com/nix-community/NixOS-WSL">NixOS-WSL</a>.</p>
+Generated at <span class="update-time">2026-03-16 Mon 23:30 +0800</span> by <a href="https://www.gnu.org/software/emacs/">Emacs</a> 30.2 (<a href="https://orgmode.org">Org</a> mode 9.8-pre) on <a href="https://github.com/nix-community/NixOS-WSL">NixOS-WSL</a>.</p>
 </footer>
 </div>
 </div>
