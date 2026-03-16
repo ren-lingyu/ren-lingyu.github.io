@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-13 Fri 07:18 +0800 -->
+<!-- 2026-03-16 Mon 20:44 +0800 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>2026 Winter Vacation</title>
+<title>2026 寒假折腾日记</title>
 <meta name="author" content="aRenCoco" />
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="https://font.aren-coco.com/MapleMono-NF-CN-Regular/result.css"/>
 <link rel="stylesheet" href="https://font.aren-coco.com/LXGWWenKai-Regular/result.css"/>
 <link rel="stylesheet" href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css"/>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
-<link rel="stylesheet" type="text/css" href="/css/org-html-style-default.css?v=20260313+0800"/>
-<link rel="stylesheet" type="text/css" href="/css/org-html-style-local.css?v=20260313+0800"/>
+<link rel="stylesheet" type="text/css" href="/css/org-html-style-default.css?v=20260316+0800"/>
+<link rel="stylesheet" type="text/css" href="/css/org-html-style-local.css?v=20260316+0800"/>
 <style>
 li:has(.filetags){display: none;}
 .content:has([value="all"]:checked)
@@ -43,32 +43,223 @@ li:has([data-filetags~="#2026"]){display: list-item;}
 <hr class="topline">
 </div>
 <div id="content" class="content">
-<h1 class="title">2026 Winter Vacation</h1>
+<h1 class="title">2026 寒假折腾日记</h1>
 <div class="post-status">
 <span>
 <i class='bx bx-calendar'></i>
-<span>2026-03-09 +0800</span>
+<span>2026-03-16 +0800</span>
 </span>
 <span>
 <i class='bx bx-edit'></i>
-<span>2026-03-09 +0800</span>
+<span>2026-03-16 +0800</span>
 </span>
 </div>
 
-<div class="abstract" id="org49f9d46">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org0cf60cd">1. 背景&amp;引子</a></li>
+<li><a href="#orga14023a">2. WSL: 从 Debian 到 NixOS</a>
+<ul>
+<li><a href="#org73ed089">2.1. 告别 Debian</a></li>
+<li><a href="#orgaee5420">2.2. 一头撞死在 Arch 上</a></li>
+<li><a href="#org319cfcf">2.3. 折中的 openSUSE Tumbleweed</a></li>
+<li><a href="#org294a0d7">2.4. 拥抱 Nixos</a></li>
+</ul>
+</li>
+<li><a href="#orgb9a25bf">3. 更换发行版遇到的一些的事情</a></li>
+<li><a href="#orgbd1f053">4. Emacs: 改配置只道是寻常</a></li>
+<li><a href="#org2509d70">5. 结语</a></li>
+</ul>
+</div>
+</div>
+<div class="abstract" id="org64a2c0e">
 <p>
-大学最后一个寒假结束了(悲)
+大学最后一个寒假就这么结束了(其实正式开始写本文时已经开学两周了<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>).
+这学期回来之后就得准备毕业论文, 理所当然地感慨(后悔)假期都干嘛了(怎么没学习). 
+所以, 本文用于记录 2026 年寒假期间的更换 WSL 中 Linux 发行版(主要)以及配置 Emacs (次要)的记录.
+<b>这不是一篇技术向的分享, 只是随便记录一下生活.</b>
 </p>
 
 </div>
+<div id="outline-container-org0cf60cd" class="outline-2">
+<h2 id="org0cf60cd"><span class="section-number-2">1.</span> 背景&amp;引子</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+我去年<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>六七月开始用 WSL, 最初安装的发行版是 Ubuntu, 后来很快换到了 Debian; 
+去年九月开始热衷于配置 Emacs<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>, 到现在也算是攒了一份自己的配置.
+在使用 Debian 的过程中, 我发现 apt 源涵盖的包貌似相对较少, 部分包需要用 apt 之外的方式安装; 
+在去年十二月和今年一月上旬, 我还遇到了 Stable 源中包相对较旧的问题.
+后来为了用最新的 Emacs 添加了 Sid 源, 但是因为没有全部切换为 Sid, 后来遇到了(可能由)不同源混用引起的依赖冲突问题.
+</p>
+
+<p>
+这里我真的忍不住想单列一段说一下这次遇到的依赖冲突, 因为看起来还挺好玩的, <b>具体表现为某个包的一个依赖和它的另一个依赖的依赖冲突</b>: 
+某个第三方包 A1 依赖 B1 和 B2, B2 依赖 C1, 然后 C1(来自 Sid, 版本较新) 跟 B1(疑似来自 Stable, 版本较旧) 冲突(因为二者版本不同),
+同时 B1 和 C1 好像都(也可能是其中之一)被别的包依赖, 没法通过简单的重装低版本处理冲突. 
+</p>
 </div>
+</div>
+<div id="outline-container-orga14023a" class="outline-2">
+<h2 id="orga14023a"><span class="section-number-2">2.</span> WSL: 从 Debian 到 NixOS</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org73ed089" class="outline-3">
+<h3 id="org73ed089"><span class="section-number-3">2.1.</span> 告别 Debian</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+一月上旬中旬因为忙着准备期末考试啥的, 没有太多精力放在这些上面, 到了一月下旬放假回家才拿出精力来处理(玩)这些.
+虽然依赖冲突的原因可能在于我不太好的使用习惯 (Stable 和 Sid 混用), 但是我最初添加 Sid 的动机是 Stable 中的包比较旧<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup>, 
+再加上之前使用 Debian 的过程中有几次需要安装的包在源中不存在最后只能用脚本安装<sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup>,
+这些原因让我期待换一个滚动更新或者接近滚动更新, 并且源中含有较多包的 Linux 发行版.
+</p>
+</div>
+</div>
+<div id="outline-container-orgaee5420" class="outline-3">
+<h3 id="orgaee5420"><span class="section-number-3">2.2.</span> 一头撞死在 Arch 上</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+正巧寒假刚开始不久, 我玩性大发(不知天高地厚(bushi))就想尝试传说中的 Arch Linux, 结果到最后只能说一句: "Arch Linux, 感谢这一两天里你的戏份". 
+在短时间内放弃 Arch, 原因是使用过程中遇到了一些我无力解决的问题, 比如 systemd 报错, Emacs GUI 也莫名其妙挂掉(大概是没配置好 WSLg 相关).
+最后怎么也弄不好<sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup>, 只能无奈删除.
+</p>
+
+<p>
+但说实话, 相比之前用 Ubuntu/Debian, 这次短暂的体验也算是让我看到了 Arch 的魅力, 包括但不限于设计上的 KISS 原则, 安装和配置过程中的透明化, AUR, 等等.
+但对于现在的我来说, 没有太大的动力和需求去学习 Linux 的系统架构和工作原理, 还是一些相对新手友好和开箱即用的发行版更适合现在的我,
+毕竟我当前使用 WSL 主要是为了使用 Emacs, 在学习 Linux 方面动力有限.
+</p>
+</div>
+</div>
+<div id="outline-container-org319cfcf" class="outline-3">
+<h3 id="org319cfcf"><span class="section-number-3">2.3.</span> 折中的 openSUSE Tumbleweed</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+在 Arch Linux 那里撞墙之后, 本着滚动更新+少修系统这两个原则, 经过了和 AI 的多番讨论和简单的调研, 我决定试一试 openSUSE Tumbleweed.
+在包管理器上, zypper 和 apt 在使用方法和上很接近(和 pacman 区别明显), 但包比 apt 更多更新. 
+除了少数几个包名的差异, 用 Debian 时维护的初始化脚本在 openSUSE 中基本也能沿用.
+在使用便捷性上, 我个人感觉开箱即用的程度和 Debian 差不多, 对不想在系统调试上花费太多精力的 or 不会调试系统的人来说比 Arch Linux 方便一些. 
+看起来 openSUSE Tumbleweed 已经是我这次换发行版之旅的终点了. 
+</p>
+</div>
+</div>
+<div id="outline-container-org294a0d7" class="outline-3">
+<h3 id="org294a0d7"><span class="section-number-3">2.4.</span> 拥抱 Nixos<sup><a id="fnr.7" class="footref" href="#fn.7" role="doc-backlink">7</a></sup></h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+我接触到 NixOS 是一个意外<sup><a id="fnr.8" class="footref" href="#fn.8" role="doc-backlink">8</a></sup>,
+但简单了解之后我发现 NixOS 声明式配置与原子化升级与回滚的特性解决了一个一直被我忽视的痛点:
+命令式配置系统的可复现性依赖自行维护的"配置笔记"或者"初始化脚本", 这一般是有关操作(比如包的安装)的指令记录, 而它们的效果常常依赖于执行命令时所处的系统环境(比如版本), 从而在一定程度上违背了维护它的最初目的;
+自行维护的初始化脚本对我来说很不方便进行测试, 我几乎不可能每次修改脚本都通过安装一个新的系统来测试脚本运行能否实现预期. 
+这些问题都在 NixOS(启用 flake 特性) 中得到了解决. 
+</p>
+
+<p>
+在声明式配置以外的其他方面: 
+</p>
+<ul class="org-ul">
+<li>社区中提供的 <a href="https://github.com/nix-community/NixOS-WSL">NixOS-WSL</a> 解决了 Microsoft 官方没有在 WSL 提供 NixOS 的问题;</li>
+<li>得益于我从使用 Emacs 开始深度使用 WSL, 结合 Git 管理的声明式配置反而比命令式配置更符合我的习惯, nix 语言的上手也并不比 elisp 更难,
+而 NixOS 提供的配置选项也足够丰富, 查 nixos-option 和 home-manager option 编写 Nix 配置文件可以满足我的绝大部分需求;</li>
+<li>没有依赖冲突问题;</li>
+<li>nixpkgs 提供的包足够丰富, 版本也并不落后.</li>
+</ul>
+
+<p>
+总而言之, 至少截至本文发布时, NixOS 充分契合了我(又菜又爱玩)的需求, 既方便我以自己习惯的方式折腾<sup><a id="fnr.9" class="footref" href="#fn.9" role="doc-backlink">9</a></sup>,
+又有充分的兜底机制防止我轻易把系统搞挂掉, 在最后的最后还能用经验证可用的配置文件重装. 
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb9a25bf" class="outline-2">
+<h2 id="orgb9a25bf"><span class="section-number-2">3.</span> 更换发行版遇到的一些的事情</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+有关 keys, 其实主要是 gpg.
+最开始用 gpg 的时候没有彻底理解它, 一开始我以为 gpg 应该像 ssh 一样, 密钥跟着主机/系统走, 所以之前换发行版的时候每个发行版一个 gpg 密钥.
+后来大概是使用 openSUSE 的后期意识到 gpg 应该跟着账户/跟着人走, 但是此时 GitHub 上已经塞了多个公钥了.
+最后将 openSUSE 里用的那个 gpg keys 导入到 NixOS 中,
+然后归档了一批私有仓库(其实就是当时主要用的几个), 新建了两个公开仓库分别放我的 <a href="https://github.com/ren-lingyu/.emacs.d">Emacs 配置文件</a>和 <a href="https://github.com/ren-lingyu/nixos">NixOS 配置文件</a>, 好像还做了一部分 rebase 重新签名<sup><a id="fnr.10" class="footref" href="#fn.10" role="doc-backlink">10</a></sup>.
+</p>
+
+<p>
+有关 docker container, 为了方便我在不同发行版中适用的目录结构相同, 但忽视了容器挂载的 volume 是绑定发行版的,
+导致有几天我怎么都没法用容器中的 texlive 编译, 但是查容器中对应的命令都存在.
+后来注意到这个问题在主要工作的发行版中重建容器就好了.
+</p>
+
+<p>
+有关 VSCode, 说来奇怪, 用 NixOS 之后我的 VSCode Remote-WSL 时灵时不灵的, 即使我用了 <a href="https://github.com/nix-community/nixos-vscode-server">nixos-vscode-server</a>.
+这算是一个小缺点吧, 但是我现在完全不用 VSCode 了, 基本都在 Emacs 中编辑, 所以也还好. 
+</p>
+</div>
+</div>
+<div id="outline-container-orgbd1f053" class="outline-2">
+<h2 id="orgbd1f053"><span class="section-number-2">4.</span> Emacs: 改配置只道是寻常</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+寒假期间好像没什么太多有意思的值得拿出来说的 Emacs 配置变更, 但是因为这又是我一直在做的事情, 所以就根据印象说说吧:
+</p>
+<ul class="org-ul">
+<li>添加了包括 <code>markdown-mode</code> <code>yaml-mode</code> <code>nix-mode</code> 在内的一些常见语言的支持, 主要是为了方便高亮与缩进;</li>
+<li>将 <code>org-roam-organize</code> 有关功能转移到<a href="https://github.com/ren-lingyu/org-roam-organize">单独的仓库</a>中, 在配置中作为一个包被使用<sup><a id="fnr.11" class="footref" href="#fn.11" role="doc-backlink">11</a></sup>;</li>
+<li>因为听说 Org 最新版本发布了换成最新版本, 之后才发现有关 org-latex-preview(来自<a href="https://code.tecosaur.net/tec/org-mode">这个</a>) 的功能好像还没合并到主分支, 然后又滚回原来的版本了;</li>
+<li>虽然是 <span class="timestamp-wrapper"><span class="timestamp">&lt;2026-03-01 Sun +0800&gt;&ndash;&lt;2026-03-02 Mon +0800&gt;</span></span> 的 commit, 严格来说不算寒假期间了, 但是还是想提一嘴, 主要基于 <code>org-roam-db-query</code> 获取需要 publish 的文件列表, 优化了 blog publish 的流程.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2509d70" class="outline-2">
+<h2 id="org2509d70"><span class="section-number-2">5.</span> 结语</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+回顾整个寒假, 我一直在努力打造一个好用的 WSL 和好用的 Emacs, 一个月里换了三次发行版, 也是挺值得记录的一件事情了. 
+事实上我研究工具本身远比使用它们多, 但考虑到"折腾"本身就能带给我很多快乐, 所以也合理. 
+</p>
+
+<p>
+另外, 因为开学之后有点焦虑, 一直每太有写东西和分享的心情, 导致这篇文章一直拖到现在(三月中旬)才发出来.
+之前我还想着差不多每个月更一篇, 现在看来本学期是真的不定期更新了. 
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">以及因为拖太久, 寒假做了什么都有些忘记了, 所以专门跑去 GitHub 看了看 2025 年一月份以来的 commit, 然后看的我头疼, 所以最后还是凭印象随便写点算了.</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">除非特别声明, 本文所有年份都以今年 = 2026 年计, 若不提年份则默认为今年.</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">经常配置不经常使用(笑).</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">印象里当时安装的 Hugo 好像落后一个大版本还是落后了一年的版本, 反正当时我在网上找的看好的主题因为 Hugo 版本太旧用不了之后查了一下 version 给我震惊了; Emacs 落后一个小版本.</p></div></div>
+
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5" role="doc-backlink">5</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">这好像还挺正常的, 但是我个人会希望能够统一用包管理器管理, 不是很喜欢有排除在外的包.</p></div></div>
+
+<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6" role="doc-backlink">6</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">具体表现为跟包括 ChatGPT 在内的一众 AI 求助, 最后 AI 跟我说可能是 WSL 和标准 Linux 的微妙差异把我这个又菜又爱玩的选手踩在地上摩擦.</p></div></div>
+
+<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7" role="doc-backlink">7</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">如果想要了解和使用 NixOS, 我推荐 <a href="https://nixos-and-flakes.thiscute.world/">NixOS &amp; Flakes Book</a>. 至少<a href="https://github.com/ren-lingyu/nixos">我自己的配置</a>最初就是从这里学的.</p></div></div>
+
+<div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8" role="doc-backlink">8</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">大概背景是过年在老家受罪, 心情也不是很愉悦, 玩游戏也没动力, 学习也没动力, 剪片子也没动力, 穷极无聊中在知乎上刷到介绍 NixOS 的帖子.</p></div></div>
+
+<div class="footdef"><sup><a id="fn.9" class="footnum" href="#fnr.9" role="doc-backlink">9</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">比如我通过 <code>systemd.services.&lt;name&gt;</code> <code>systemd.user.services.&lt;name&gt;</code> 配置服务, 这个过程中也了解了 systemd, 不像之前完全当作黑箱.</p></div></div>
+
+<div class="footdef"><sup><a id="fn.10" class="footnum" href="#fnr.10" role="doc-backlink">10</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">感觉自己非要把所有的 gpg 签名都用同一个 key 有点像某种意义上的洁癖. 但其实我也犯懒, 所以干脆归档旧仓库改用新仓库了.</p></div></div>
+
+<div class="footdef"><sup><a id="fn.11" class="footnum" href="#fnr.11" role="doc-backlink">11</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">最近也一直在完善, 也许等之后有时间了会规范一下尝试提交到 melpa.</p></div></div>
+
+
+</div>
+</div></div>
 <div id="postamble" class="status">
 
 <footer>
 <p>
 &copy;2026 <a rel="cc:attributionURL" href="https://aren-coco.com/">aRenCoco</a> · <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"></p>
 <p>
-Generated at <span class="update-time">2026-03-13 Fri 07:18 +0800</span> by <a href="https://www.gnu.org/software/emacs/">Emacs</a> 30.2 (<a href="https://orgmode.org">Org</a> mode 9.8-pre) on WSL2.</p>
+Generated at <span class="update-time">2026-03-16 Mon 20:44 +0800</span> by <a href="https://www.gnu.org/software/emacs/">Emacs</a> 30.2 (<a href="https://orgmode.org">Org</a> mode 9.8-pre) on <a href="https://github.com/nix-community/NixOS-WSL">NixOS-WSL</a>.</p>
 </footer>
 </div>
 </div>
