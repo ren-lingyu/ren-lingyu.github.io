@@ -6,28 +6,10 @@ runs:
     - name: Setup Pages
       uses: actions/configure-pages@v6
 
-    - name: Build github-pages artifact
-      shell: bash
-      run: |
-        set -euo pipefail
-        artifact_path="$RUNNER_TEMP/github-pages.tar"
-        # Build tar from workspace into RUNNER_TEMP to avoid self-inclusion.
-        tar \
-          --exclude=.git \
-          --exclude=.github \
-          --exclude=github-pages.tar \
-          --exclude=github-pages.tar.gz \
-          -C "$GITHUB_WORKSPACE" \
-          -cf "$artifact_path" .
-        gzip -f "$artifact_path"
-
     - name: Upload artifact
-      uses: actions/upload-artifact@v7
+      uses: actions/upload-pages-artifact@v7
       with:
-        name: github-pages
-        path: ${{ runner.temp }}/github-pages.tar.gz
-        archive: false
-        retention-days: 1
+        path: .
 
     - name: Deploy to GitHub Pages
       id: deployment
