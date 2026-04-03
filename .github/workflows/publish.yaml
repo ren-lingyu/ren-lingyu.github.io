@@ -1,4 +1,4 @@
-name: Orchestrate Feed And Deploy
+name: Generate Feed And Deploy
 
 on:
   # Runs on pushes targeting the default branch
@@ -8,7 +8,9 @@ on:
     paths:
       - "**/*.html"
       - "**/*.css"
+      - "**/*.js"
       - "favicon.svg"
+      - ".github/**/*.yaml"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
