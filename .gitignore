@@ -18,3 +18,7 @@
 !css/
 !css/**/
 !css/**/*.css
+
+!scripts/
+!scripts/**/
+!scripts/**/*.js
