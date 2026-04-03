@@ -26,6 +26,7 @@ runs:
       with:
         name: github-pages
         path: ${{ runner.temp }}/github-pages.tar.gz
+        archive: false
         retention-days: 1
 
     - name: Deploy to GitHub Pages
