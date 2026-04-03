@@ -519,8 +519,9 @@ ul .filetags {
   }
 }
 
-/* 摘要 */
-.abstract {
+/* 摘要和描述 */
+.abstract,
+.discription {
     margin: 1rem 2rem;
     padding-left: 1rem;
     border-left: 4px solid var(--color-abstract-border-left);
@@ -530,7 +531,7 @@ ul .filetags {
 }
 
 [class^="outline-text-"] {
-    > p:has(span.timestamp-wrapper) + div.abstract {
+    > p:has(span.timestamp-wrapper) + div.discription {
 	padding-left: 0rem;
 	padding-right: 0rem;
 	margin-left: 0rem;
