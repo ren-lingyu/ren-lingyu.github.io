@@ -521,7 +521,7 @@ ul .filetags {
 
 /* 摘要和描述 */
 .abstract,
-.discription {
+.description {
     margin: 1rem 2rem;
     padding-left: 1rem;
     border-left: 4px solid var(--color-abstract-border-left);
@@ -531,20 +531,25 @@ ul .filetags {
 }
 
 [class^="outline-text-"] {
-    > p:has(span.timestamp-wrapper) + div.discription {
-	padding-left: 0rem;
-	padding-right: 0rem;
-	margin-left: 0rem;
-	margin-right: 0rem;
-	margin-top: 0rem;
-	margin-bottom: 1rem;
-	border-left: 0;
-	p {
+    > p:has(span.timestamp-wrapper) + div.description {
+	    padding-left: 0rem;
+	    padding-right: 0rem;
+	    margin-left: 0rem;
+	    margin-right: 0rem;
 	    margin-top: 0rem;
-	}
+	    margin-bottom: 1rem;
+	    border-left: 0;
+	    p {
+	        margin-top: 0rem;
+	    }
     }
 }
 
+/* 表格 */
+table {
+    margin: auto;
+    min-width: 50%;
+}
 
 /* 代码 */
 code {
