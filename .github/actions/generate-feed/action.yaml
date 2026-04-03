@@ -29,7 +29,7 @@ runs:
 
         const SITE_URL = process.env.SITE_URL || 'https://aren-coco.com';
         const SITEMAP_PATH = 'sitemap.html';
-        const FEED_OUTPUT = 'feed.atom';
+        const FEED_OUTPUT = 'feed.xml';
 
         function extractMeta(htmlContent) {
           const dom = new JSDOM(htmlContent);
