@@ -1,0 +1,117 @@
+name: Generate Atom Feed
+description: Generate feed.atom from sitemap.html and post HTML metadata
+inputs:
+  site-url:
+    description: Site base URL
+    required: true
+    default: https://aren-coco.com
+runs:
+  using: composite
+  steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      shell: bash
+      run: npm install --no-save feed jsdom
+
+    - name: Generate Atom Feed
+      shell: bash
+      env:
+        SITE_URL: ${{ inputs.site-url }}
+      run: |
+        node << 'EOF'
+        import { Feed } from 'feed';
+        import * as fs from 'fs';
+        import { JSDOM } from 'jsdom';
+
+        const SITE_URL = process.env.SITE_URL || 'https://aren-coco.com';
+        const SITEMAP_PATH = 'sitemap.html';
+        const FEED_OUTPUT = 'feed.atom';
+
+        function extractMeta(htmlContent) {
+          const dom = new JSDOM(htmlContent);
+          const doc = dom.window.document;
+          const title = doc.querySelector('title')?.textContent || '';
+          const description = doc.querySelector('meta[name="description"]')?.getAttribute('content') || '';
+          const author = doc.querySelector('meta[name="author"]')?.getAttribute('content') || 'aRenCoco';
+          return { title, description, author };
+        }
+
+        function parseSitemap() {
+          const htmlContent = fs.readFileSync(SITEMAP_PATH, 'utf-8');
+          const dom = new JSDOM(htmlContent);
+          const doc = dom.window.document;
+          const articles = [];
+          const ul = doc.querySelector('ul.org-ul');
+          if (!ul) return articles;
+
+          for (const li of Array.from(ul.querySelectorAll('li'))) {
+            const timestampSpan = li.querySelector('span.timestamp');
+            if (!timestampSpan) continue;
+            const timestampText = timestampSpan.textContent || '';
+            const dateMatch = timestampText.match(/\[(\d{4}-\d{2}-\d{2})/);
+            if (!dateMatch) continue;
+            const date = dateMatch[1];
+            const link = li.querySelector('a');
+            if (!link) continue;
+            const href = link.getAttribute('href') || '';
+            const title = link.textContent?.trim() || '';
+            const filetagsSpan = li.querySelector('span.filetags');
+            const tags = filetagsSpan?.getAttribute('data-filetags')?.split(/\s+/) || [];
+            articles.push({ href, title, date, tags });
+          }
+          return articles;
+        }
+
+        function readHtmlMeta(htmlPath) {
+          try {
+            if (!fs.existsSync(htmlPath)) {
+              console.warn(`Warning: ${htmlPath} not found`);
+              return null;
+            }
+            const content = fs.readFileSync(htmlPath, 'utf-8');
+            return extractMeta(content);
+          } catch (err) {
+            console.error(`Error reading ${htmlPath}:`, err);
+            return null;
+          }
+        }
+
+        function generateFeed(articles) {
+          const feed = new Feed({
+            title: "aRenCoco's Blog",
+            id: SITE_URL,
+            link: SITE_URL,
+            description: 'Personal blog',
+            language: 'en',
+            copyright: '©2026 aRenCoco · CC BY-NC-SA 4.0',
+            author: { name: 'aRenCoco' },
+          });
+
+          for (const article of articles) {
+            const meta = readHtmlMeta(article.href);
+            if (!meta) continue;
+            const title = meta.title || article.title;
+            const itemUrl = new URL(article.href, SITE_URL).href;
+            feed.addItem({
+              id: itemUrl,
+              title,
+              link: itemUrl,
+              description: meta.description,
+              author: [{ name: meta.author }],
+              date: new Date(`${article.date}T00:00:00+08:00`),
+              category: article.tags.map((tag) => ({ term: tag })),
+            });
+          }
+
+          fs.writeFileSync(FEED_OUTPUT, feed.atom1());
+          console.log(`Generated ${FEED_OUTPUT}`);
+        }
+
+        const articles = parseSitemap();
+        console.log(`Found ${articles.length} articles`);
+        generateFeed(articles);
+        EOF
