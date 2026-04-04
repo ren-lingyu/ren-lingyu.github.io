@@ -1,2 +1,4 @@
-# ren-lingyu.github.io
-[aRenCoco's Blog](https://aren-coco.com)
+#+TITLE: ren-lingyu.github.io
+#+AUTHOR: aRenCoco
+
+[[https://aren-coco.com][aRenCoco's Blog]]
