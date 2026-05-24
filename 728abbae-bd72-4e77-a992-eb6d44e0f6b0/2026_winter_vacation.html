@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-05-10 Sun 00:19 +0800 -->
+<!-- 2026-05-24 Sun 16:37 +0800 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>2026 寒假折腾日记</title>
@@ -14,8 +14,8 @@
 <link rel="stylesheet" href="https://font.aren-coco.com/LXGWWenKai-Regular/result.css"/>
 <link rel="stylesheet" href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css"/>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
-<link rel="stylesheet" type="text/css" href="/css/org-html-style-default.css?v=20260510+0800"/>
-<link rel="stylesheet" type="text/css" href="/css/org-html-style-local.css?v=20260510+0800"/>
+<link rel="stylesheet" type="text/css" href="/css/org-html-style-default.css?v=20260524+0800"/>
+<link rel="stylesheet" type="text/css" href="/css/org-html-style-local.css?v=20260524+0800"/>
 <link rel="alternate" type="application/atom+xml" title="aRenCoco's Blog - Atom" href="/feed.atom"/>
 <style>
 li:has(.filetags){display: none;}
@@ -56,7 +56,7 @@ li:has([data-filetags~="#2026"]){display: list-item;}
 </span>
 <span>
 <i class='bx bx-edit'></i>
-<span>2026-05-09 +0800</span>
+<span>2026-05-24 +0800</span>
 </span>
 </div>
 
@@ -64,22 +64,22 @@ li:has([data-filetags~="#2026"]){display: list-item;}
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org709cfc9">1. 背景&amp;引子</a></li>
-<li><a href="#org954a56b">2. WSL: 从 Debian 到 NixOS</a>
+<li><a href="#org17e32aa">1. 背景&amp;引子</a></li>
+<li><a href="#org4b892cb">2. WSL: 从 Debian 到 NixOS</a>
 <ul>
-<li><a href="#org272e9c4">2.1. 告别 Debian</a></li>
-<li><a href="#orgad78189">2.2. 一头撞死在 Arch 上</a></li>
-<li><a href="#orgf849db1">2.3. 折中的 openSUSE Tumbleweed</a></li>
-<li><a href="#org0d86a67">2.4. 拥抱 Nixos</a></li>
+<li><a href="#org0a38be4">2.1. 告别 Debian</a></li>
+<li><a href="#orgf43d64f">2.2. 一头撞死在 Arch 上</a></li>
+<li><a href="#orge231ba9">2.3. 折中的 openSUSE Tumbleweed</a></li>
+<li><a href="#org90f1352">2.4. 拥抱 NixOS</a></li>
 </ul>
 </li>
-<li><a href="#orgf33336a">3. 更换发行版遇到的一些的事情</a></li>
-<li><a href="#org8a692f8">4. Emacs: 改配置只道是寻常</a></li>
-<li><a href="#orgf1c8f5d">5. 结语</a></li>
+<li><a href="#org625bddd">3. 更换发行版遇到的一些的事情</a></li>
+<li><a href="#org72af0eb">4. Emacs: 改配置只道是寻常</a></li>
+<li><a href="#org564918a">5. 结语</a></li>
 </ul>
 </div>
 </div>
-<div class="abstract" id="org699f8f4">
+<div class="abstract" id="org5a2be9c">
 <p>
 大学最后一个寒假就这么结束了(其实正式开始写本文时已经开学两周了<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>).
 这学期回来之后就得准备毕业论文, 理所当然地感慨(后悔)假期都干嘛了(怎么没学习). 
@@ -88,8 +88,8 @@ li:has([data-filetags~="#2026"]){display: list-item;}
 </p>
 
 </div>
-<div id="outline-container-org709cfc9" class="outline-2">
-<h2 id="org709cfc9"><span class="section-number-2">1.</span> 背景&amp;引子</h2>
+<div id="outline-container-org17e32aa" class="outline-2">
+<h2 id="org17e32aa"><span class="section-number-2">1.</span> 背景&amp;引子</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 我去年<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>六七月开始用 WSL, 最初安装的发行版是 Ubuntu, 后来很快换到了 Debian; 
@@ -106,12 +106,12 @@ li:has([data-filetags~="#2026"]){display: list-item;}
 </p>
 </div>
 </div>
-<div id="outline-container-org954a56b" class="outline-2">
-<h2 id="org954a56b"><span class="section-number-2">2.</span> WSL: 从 Debian 到 NixOS</h2>
+<div id="outline-container-org4b892cb" class="outline-2">
+<h2 id="org4b892cb"><span class="section-number-2">2.</span> WSL: 从 Debian 到 NixOS</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org272e9c4" class="outline-3">
-<h3 id="org272e9c4"><span class="section-number-3">2.1.</span> 告别 Debian</h3>
+<div id="outline-container-org0a38be4" class="outline-3">
+<h3 id="org0a38be4"><span class="section-number-3">2.1.</span> 告别 Debian</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 一月上旬中旬因为忙着准备期末考试啥的, 没有太多精力放在这些上面, 到了一月下旬放假回家才拿出精力来处理(玩)这些.
@@ -121,8 +121,8 @@ li:has([data-filetags~="#2026"]){display: list-item;}
 </p>
 </div>
 </div>
-<div id="outline-container-orgad78189" class="outline-3">
-<h3 id="orgad78189"><span class="section-number-3">2.2.</span> 一头撞死在 Arch 上</h3>
+<div id="outline-container-orgf43d64f" class="outline-3">
+<h3 id="orgf43d64f"><span class="section-number-3">2.2.</span> 一头撞死在 Arch 上</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 正巧寒假刚开始不久, 我玩性大发(不知天高地厚(bushi))就想尝试传说中的 Arch Linux, 结果到最后只能说一句: "Arch Linux, 感谢这一两天里你的戏份". 
@@ -137,8 +137,8 @@ li:has([data-filetags~="#2026"]){display: list-item;}
 </p>
 </div>
 </div>
-<div id="outline-container-orgf849db1" class="outline-3">
-<h3 id="orgf849db1"><span class="section-number-3">2.3.</span> 折中的 openSUSE Tumbleweed</h3>
+<div id="outline-container-orge231ba9" class="outline-3">
+<h3 id="orge231ba9"><span class="section-number-3">2.3.</span> 折中的 openSUSE Tumbleweed</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 在 Arch Linux 那里撞墙之后, 本着滚动更新+少修系统这两个原则, 经过了和 AI 的多番讨论和简单的调研, 我决定试一试 openSUSE Tumbleweed.
@@ -149,8 +149,8 @@ li:has([data-filetags~="#2026"]){display: list-item;}
 </p>
 </div>
 </div>
-<div id="outline-container-org0d86a67" class="outline-3">
-<h3 id="org0d86a67"><span class="section-number-3">2.4.</span> 拥抱 Nixos<sup><a id="fnr.7" class="footref" href="#fn.7" role="doc-backlink">7</a></sup></h3>
+<div id="outline-container-org90f1352" class="outline-3">
+<h3 id="org90f1352"><span class="section-number-3">2.4.</span> 拥抱 NixOS<sup><a id="fnr.7" class="footref" href="#fn.7" role="doc-backlink">7</a></sup></h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 我接触到 NixOS 是一个意外<sup><a id="fnr.8" class="footref" href="#fn.8" role="doc-backlink">8</a></sup>,
@@ -178,8 +178,8 @@ li:has([data-filetags~="#2026"]){display: list-item;}
 </div>
 </div>
 </div>
-<div id="outline-container-orgf33336a" class="outline-2">
-<h2 id="orgf33336a"><span class="section-number-2">3.</span> 更换发行版遇到的一些的事情</h2>
+<div id="outline-container-org625bddd" class="outline-2">
+<h2 id="org625bddd"><span class="section-number-2">3.</span> 更换发行版遇到的一些的事情</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 有关 keys, 其实主要是 gpg.
@@ -201,8 +201,8 @@ li:has([data-filetags~="#2026"]){display: list-item;}
 </p>
 </div>
 </div>
-<div id="outline-container-org8a692f8" class="outline-2">
-<h2 id="org8a692f8"><span class="section-number-2">4.</span> Emacs: 改配置只道是寻常</h2>
+<div id="outline-container-org72af0eb" class="outline-2">
+<h2 id="org72af0eb"><span class="section-number-2">4.</span> Emacs: 改配置只道是寻常</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 寒假期间好像没什么太多有意思的值得拿出来说的 Emacs 配置变更, 但是因为这又是我一直在做的事情, 所以就根据印象说说吧:
@@ -215,8 +215,8 @@ li:has([data-filetags~="#2026"]){display: list-item;}
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf1c8f5d" class="outline-2">
-<h2 id="orgf1c8f5d"><span class="section-number-2">5.</span> 结语</h2>
+<div id="outline-container-org564918a" class="outline-2">
+<h2 id="org564918a"><span class="section-number-2">5.</span> 结语</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 回顾整个寒假, 我一直在努力打造一个好用的 WSL 和好用的 Emacs, 一个月里换了三次发行版, 也是挺值得记录的一件事情了. 
@@ -264,7 +264,7 @@ li:has([data-filetags~="#2026"]){display: list-item;}
 <p>
 &copy;2026 <a rel="cc:attributionURL" href="https://aren-coco.com/">aRenCoco</a> · <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"></p>
 <p>
-Generated at <span class="update-time">2026-05-10 Sun 00:19 +0800</span> by <a href="https://www.gnu.org/software/emacs/">Emacs</a> 30.2 (<a href="https://orgmode.org">Org</a> mode 9.8-pre) on <a href="https://nixos.org">NixOS</a>.</p>
+Generated at <span class="update-time">2026-05-24 Sun 16:37 +0800</span> by <a href="https://www.gnu.org/software/emacs/">Emacs</a> 30.2 (<a href="https://orgmode.org">Org</a> mode 9.8-pre) on <a href="https://nixos.org">NixOS</a>.</p>
 </footer>
 </div>
 </div>
