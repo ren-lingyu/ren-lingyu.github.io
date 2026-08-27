@@ -2,18 +2,18 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://aren-coco.com</id>
     <title>aRenCoco's Blog</title>
-    <updated>2026-05-24T08:50:30.044Z</updated>
+    <updated>2026-08-27T03:47:03.041Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>aRenCoco</name>
     </author>
-    <link rel="alternate" href="https://aren-coco.com"/>
+    <link rel="alternate" href="https://aren-coco.com/"/>
     <subtitle>Personal blog</subtitle>
     <rights>©2026 aRenCoco · CC BY-NC-SA 4.0</rights>
     <entry>
         <title type="html"><![CDATA[2026 寒假折腾日记]]></title>
-        <id>https://aren-coco.com/728abbae-bd72-4e77-a992-eb6d44e0f6b0/2026_winter_vacation.html</id>
-        <link href="https://aren-coco.com/728abbae-bd72-4e77-a992-eb6d44e0f6b0/2026_winter_vacation.html"/>
+        <id>https://aren-coco.com/store/728abbae-bd72-4e77-a992-eb6d44e0f6b0/2026_winter_vacation.html</id>
+        <link href="https://aren-coco.com/store/728abbae-bd72-4e77-a992-eb6d44e0f6b0/2026_winter_vacation.html"/>
         <updated>2026-03-15T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[大学最后一个寒假就这么结束了(其实正式开始写本文时已经开学两周了). 这学期回来之后就得准备毕业论文, 理所当然地感慨(后悔)假期都干嘛了(怎么没学习). 所以, 本文用于记录 2026 年寒假期间的更换 WSL 中 Linux 发行版(主要)以及配置 Emacs (次要)的记录.]]></summary>
         <author>
@@ -24,8 +24,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[聊聊小说]]></title>
-        <id>https://aren-coco.com/9ad88f6e-e5fe-4739-87cc-ed07da3a0922/novel.html</id>
-        <link href="https://aren-coco.com/9ad88f6e-e5fe-4739-87cc-ed07da3a0922/novel.html"/>
+        <id>https://aren-coco.com/store/9ad88f6e-e5fe-4739-87cc-ed07da3a0922/novel.html</id>
+        <link href="https://aren-coco.com/store/9ad88f6e-e5fe-4739-87cc-ed07da3a0922/novel.html"/>
         <updated>2026-02-01T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[作为(截至目前)十年以上的长篇玄幻网文读者, 小说在很大程度上影响着我对世界的看法, 对价值的判断, 以及对未来道路的选择. 恰好一个月之前写年度总结的时候东扯西扯提到这些, 就顺手写一篇随笔简单聊聊对小说的看法, 以及小说带给了我什么.]]></summary>
         <author>
@@ -36,8 +36,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[2025 年度总结]]></title>
-        <id>https://aren-coco.com/5ca25c84-6f5c-4d86-ad70-27952943ff50/2025_summary.html</id>
-        <link href="https://aren-coco.com/5ca25c84-6f5c-4d86-ad70-27952943ff50/2025_summary.html"/>
+        <id>https://aren-coco.com/store/5ca25c84-6f5c-4d86-ad70-27952943ff50/2025_summary.html</id>
+        <link href="https://aren-coco.com/store/5ca25c84-6f5c-4d86-ad70-27952943ff50/2025_summary.html"/>
         <updated>2026-01-04T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[2025 年已经结束, 恰逢我从25年年底开始折腾着搭建个人博客, 就以本站第一篇文章回顾一下我在过去的一年里的经历吧.]]></summary>
         <author>
