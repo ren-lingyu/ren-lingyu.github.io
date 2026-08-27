@@ -14,7 +14,10 @@
 !.github/**/
 !.github/**/*.yaml
 
-!**/*.html
+!*.html
+!store/
+!store/**/
+!store/**/*.html
 
 !css/
 !css/**/
